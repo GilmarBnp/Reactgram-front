@@ -1,0 +1,41 @@
+#edit-profile {
+border: 1px solid #363636;
+background-color: #1d2226;
+padding: 1.5em 2em;
+max-width: 35%;
+margin: 2em auto;
+text-align: center;
+
+}
+
+form .email-input {
+    border: 1px solid #363636;
+}
+
+
+.subtitle {
+    color: #CCC;
+  
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1em;
+    object-fit: cover;
+    object-position: center;
+ 
+}
+
+.labe-span {
+    justify-content:  left;
+    text-align: left;
+    color: #ffffff;
+    font-size: .8em;
+}
+
+form .loading {
+    justify-content: center;
+}
+
