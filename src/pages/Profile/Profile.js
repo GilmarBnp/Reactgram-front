@@ -36,7 +36,7 @@ const Profile = () => {
 
 
   function refreshPage() {
-    window.location.reload();
+   window.location.reload();
   }
 
   // New photo and editPhoto refs
