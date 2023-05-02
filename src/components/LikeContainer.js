@@ -1,16 +1,13 @@
 import './LikeContainer.css';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPhotoLikes, like } from '../slices/photoSlice';
-import { useEffect, useState } from 'react';
+import { getPhotoLikes, like, getPhoto } from '../slices/photoSlice';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useResetComponentMessage } from "../hooks/useResetComponentMesssage"; 
-import { useMemo } from 'react';
 
 const LikeContainer = ({ photo, user }) => {
   const { id } = useParams();
-
-  const [isLiking, setIsLiking] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -21,9 +18,17 @@ const LikeContainer = ({ photo, user }) => {
 
   const resetMessage = useResetComponentMessage(dispatch);
 
+  const [isLiking, setIsLiking] = useState(false);
+
   const photoLikes = useMemo(() => likes, [likes]);
 
   useEffect(() => {
+    dispatch(getPhoto(id))
+
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(getPhoto(id))
     dispatch(getPhotoLikes(id));
 
   }, [dispatch, id]);
@@ -48,11 +53,10 @@ const LikeContainer = ({ photo, user }) => {
     }
   };
 
-
   return (
     <div className='like'>
       <>
-        {likes.includes(userAuth._id) ? (
+        {photoLikes.includes(userAuth._id) ? (
           <BsHeartFill
             color='white'
             onClick={() => {
@@ -66,9 +70,12 @@ const LikeContainer = ({ photo, user }) => {
             }}
           />
         )}
-          <p>  
+        <div>
+        <p className='likess'>  
           {photoLikes.length} {photoLikes.length > 1 ? 'likes' : 'like'}
         </p>
+        </div>
+         
       </>
     </div>
   );

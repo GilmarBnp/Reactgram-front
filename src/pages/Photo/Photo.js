@@ -38,11 +38,6 @@ const Photo = () => {
       dispatch(getPhoto(id))
     }, [dispatch, id])
 
-    //const handleLike = () => { 
-    // dispatch(like(photo._id));
-    // resetMessage();
-    // };
-
     const handleComment = (e) => {
       e.preventDefault()
 

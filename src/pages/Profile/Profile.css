@@ -10,59 +10,66 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 1em;
-    border: 1px solid #363636;
-    margin-top: 4em;
-}
-
-.profile-header img {
+    border-bottom: 1px solid #363636;
+  }
+  
+  .profile-header img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-right: 2em;
-}
-
-.new-photo {
-    border: 1px solid #363636;
-    border-bottom: 1px solid rgb(69, 81, 90)c;    
-}
-
-.photos-container {
-    width: 100%;
+  }
+  
+  .new-photo {
+    padding: 1em;
+    border-bottom: 1px solid #363636;
+  }
+  
+  .photos-container {
     display: flex;
     flex-wrap: wrap;
-}
-
-.photo {
-    margin: 0.2em;
-    padding: .1em;       
-}
-
-.photo img {
-    padding-left: .8em;
-    width: 200px;
-    height: 250px;
+  }
+  
+  .photo {
+    width: 32%;
+    margin: 0.3%;
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 200px;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover; 
-}
-
-.actions {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding-bottom: 1em;
+  }
+  
+  .actions {
     display: flex;
     justify-content: space-around;
-    padding: 10px;  
-}
-
-.actions svg {
+    padding: 10px;
+  }
+  
+  .actions svg {
     cursor: pointer;
-}
-
-.edit-photo img {
+  }
+  
+  .edit-photo {
+    margin-bottom: 1em;
+  }
+  
+  .edit-photo img {
     width: 100%;
     margin-bottom: 1em;
-}
+  }
 
 @media screen and (max-device-width: 889px) {
 .photos-container {
     width: 100%;
-    height: 80%;
+    height: 160px;
     display: flex;
 }
 
@@ -70,18 +77,20 @@
 .photo img {
     width: 100%;
     height: 240px;
-    max-width: 100%;
+    max-width: 200px;
     max-height: 100%;
-    object-fit: fill; 
+    object-fit: cover; 
     justify-content: center;
     display: flex;
     align-items: center;
+    padding-bottom: 1em;
+    
 }
 
 .img{
     width: 90%;
     height: 100%;
-    
+
 }
 
 .photo {
@@ -89,6 +98,7 @@
     height: 90%;       
     margin: 0.3em;
     padding-right: 2em; 
+   
 }
 
 .actions {
@@ -96,7 +106,17 @@
     display: flex;
 
     }
-
+    
+    .btn, button, input[type='submit'] {
+        background-color: #0094f6;
+        color: #FFF;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 89px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1em;
+    }
     
 
 }

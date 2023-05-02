@@ -79,6 +79,22 @@ const getPhotoLikes = async(id) => {
 
 };
 
+// Get a photo likes by id
+const getPhotoLikesAll = async() => {
+    const config = requestConfig("GET", null);
+
+    try {
+        const res = await fetch(api + "/photos/likes/", config)
+        .then((res) => res.json())
+        .catch((err) => err)
+
+        return res;
+    } catch (error) {
+        console.log(error);
+    };
+
+};
+
 const deletePhoto = async(id, token)=> {
     const config = requestConfig("DELETE", null, token);
 
@@ -151,7 +167,8 @@ const photoService = {
     like,
     getPhotoLikes,
     comment,
-    getAllPhotos
+    getAllPhotos,
+    getPhotoLikesAll
 };
 
 export default photoService;

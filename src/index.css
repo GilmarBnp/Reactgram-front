@@ -6,6 +6,21 @@ body {
   box-sizing: border-box;
   background-color: #121212;
   color: #fafafa;
+  scrollbar-width: auto;
+
+
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #272727;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #37363b;
+  border-radius: 4px;
 }
 
 a {

@@ -68,6 +68,16 @@ export const getPhotoLikes = createAsyncThunk("photo/getphotolikes", async(id, t
     return data;
   });
 
+  // Get all photos likes by id
+export const getPhotoLikesAll = createAsyncThunk("photo/getphotolikesall", async(_, thunkAPI) => {
+
+  const data = await photoService.getPhotoLikesAll();
+
+  //console.log(data?.errors);
+
+  return data;
+});
+
 export const updatePhoto = createAsyncThunk(
   "photo/update",
   async(photoData, thunkAPI) => {
@@ -139,6 +149,10 @@ export const photoSlice = createSlice({
         resetMessage: (state) => {
             state.message = null;
         },
+        resetState: (state) => {
+          state.photo = '';
+          state.likes = '';
+      },
     },
     extraReducers: (builder) => {
         builder
@@ -235,9 +249,23 @@ export const photoSlice = createSlice({
             state.success = true;
             state.error = null;
             state.likes = action.payload;
-            state.pullLikes = false; 
           })
           .addCase(getPhotoLikes.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+          })
+          .addCase(getPhotoLikesAll.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+       
+          })
+          .addCase(getPhotoLikesAll.fulfilled, (state, action) => {
+            state.loading = false;
+            state.success = true;
+            state.error = null;
+            state.likesAll = action.payload.photoAllLikes;
+          })
+          .addCase(getPhotoLikesAll.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
           })
@@ -251,12 +279,7 @@ export const photoSlice = createSlice({
             state.success = true;
             state.error = null;
 
-            state.photos.map((photo) => {
-              if (photo._id === action.payload.photoId) {
-                return photo.likes.push(action.payload.userId);
-              }
-              return photo;
-            }); 
+            
 
             state.message = action.payload.message
                 
@@ -297,5 +320,5 @@ export const photoSlice = createSlice({
         }
 });
 
-export const {resetMessage, likeDone, likeUndone} = photoSlice.actions;
+export const {resetMessage, resetState} = photoSlice.actions;
 export default photoSlice.reducer;
