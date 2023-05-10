@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 import Message from "../../components/Message";
 
 // Hooks
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useResetComponentMessage } from "../../hooks/useResetComponentMesssage";
 
 // Redux
-import { getAllPhotos, like, getPhoto, resetState, getPhotoLikesAll } from "../../slices/photoSlice";
+import { getAllPhotos, like, getPhotoLikesAll } from "../../slices/photoSlice";
 import LikeContainerAll from "../../components/LikeContainerAll";
 
 const Home = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
+ 
   const [photosPerPage] = useState(5);
 
   const indexOfLastPhoto = currentPage * photosPerPage;
@@ -71,7 +72,7 @@ const Home = () => {
       return <p>Loading...</p>
     };
 
-    const pageNumbers = [];
+  const pageNumbers = [];
    for (let i = 1; i <= Math.ceil(photos.length / photosPerPage); i++) {
      pageNumbers.push(i);
    };
@@ -96,7 +97,7 @@ const Home = () => {
         </h2>
       )}
       <div className="pagination">
-      {pageNumbers.map((number) => (
+      {pageNumbers && pageNumbers.map((number) => (
         <button
           key={number}
           className={currentPage === number ? "active" : ""}

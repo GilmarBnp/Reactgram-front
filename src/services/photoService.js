@@ -84,7 +84,7 @@ const getPhotoLikesAll = async() => {
     const config = requestConfig("GET", null);
 
     try {
-        const res = await fetch(api + "/photos/likes/", config)
+        const res = await fetch(api + "/photos/likes", config)
         .then((res) => res.json())
         .catch((err) => err)
 
@@ -158,6 +158,24 @@ const getAllPhotos=async(token)=> {
     };
 };
 
+// Search photo by title
+const searchPhotos = async(query, token) => {
+
+    
+    const config = requestConfig("GET", null, token) 
+
+    try {
+      const res = await fetch(api + '/photos/search?q=' + query, config)
+      .then((res) => res.json())
+      .catch((err) => err);
+      
+      return res;
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+
 const photoService = {
     publishPhoto,
     getUserPhotos,
@@ -168,7 +186,8 @@ const photoService = {
     getPhotoLikes,
     comment,
     getAllPhotos,
-    getPhotoLikesAll
+    getPhotoLikesAll,
+    searchPhotos,
 };
 
 export default photoService;

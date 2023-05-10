@@ -6,17 +6,19 @@ import { useAuth } from './hooks/useAuth';
 
 // Router
 import { BrowserRouter, Routes, Route, Navigate, Router} from "react-router-dom"
+
+// Components
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+// Pages
 import Register from '../src/pages/Auth/Register';
 import Home from './pages/Home/Home';
 import Login from './pages/Auth/Login';
 import EditProfile from '../src/pages/EditProfile/EditProfile'
 import Profile from './pages/Profile/Profile';
-
-// Components
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Photo from './pages/Photo/Photo';
-
+import Search from './pages/Search/Search';
 
 function App() {
   
@@ -48,6 +50,9 @@ function App() {
          element={!auth ? <Login/> : <Navigate to='/'/>}/>
          <Route path='/photos/:id' 
          element={auth ? <Photo/> : <Navigate to='/login/'/>}/>
+         <Route
+          path="search"
+          element={auth ? <Search/> : <Navigate to='/login/'/>}/>
       </Routes>
       </div>
       <Footer />
